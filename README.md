@@ -9,7 +9,7 @@
 | [`types/`](types/)                     | JSON Schemas of the core record types                                                  |
 | [`src/`](src/)                         | The reference library: create and verify every v0 object                               |
 | [`vectors/`](vectors/)                 | Test vectors any implementation, in any language, can run ([guide](vectors/README.md)) |
-| [`conformance/`](conformance/)         | The vector runner, the vector builder, and (soon) live host checks                     |
+| [`conformance/`](conformance/)         | The vector runner, the vector builder, and live host checks                            |
 
 ## Use
 
@@ -24,7 +24,7 @@ Needs Node 24 and pnpm 10.
 
 ## Status
 
-v0, approved 2026-10-17. Implemented here: key logs, records, the repository log and checkpoints, sign-in proofs, file refs and scape bundles. Not yet: the host checks (`pnpm conformance --host`), which arrive with Scape's first host endpoints.
+v0, approved 2026-10-17. Implemented here: key logs, records, the repository log and checkpoints, sign-in proofs, file refs and scape bundles, plus live host checks (`pnpm conformance --host URL --account ID`) for the descriptor, key logs, handles and errors. Checks for the record, log and checkpoint endpoints are written as hosts start serving them; until then they report as pending.
 
 ## License
 

@@ -11,6 +11,7 @@
   "packageManager": "pnpm@10.33.0",
   "exports": {
     ".": "./src/index.ts",
+    "./host-checks": "./conformance/host.ts",
     "./types/*.json": "./types/*.json"
   },
   "scripts": {
