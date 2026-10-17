@@ -1,13 +1,17 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "scape",
-  "description": "A scape bundle manifest. rkey: the scape's slug. Path rules are checked beyond this schema (spec: Scape bundles).",
+  "description": "A scape bundle manifest. rkey: generated. Path rules are checked beyond this schema (spec: Scape bundles).",
   "type": "object",
   "required": ["entry", "files"],
   "properties": {
     "title": {
       "type": "string",
       "maxLength": 200
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
     },
     "entry": {
       "type": "string"
@@ -95,7 +99,7 @@
         },
         "rkey": {
           "type": "string",
-          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+          "pattern": "^(?:self|[2-7a-z]{13})$"
         },
         "cid": {
           "type": "string",

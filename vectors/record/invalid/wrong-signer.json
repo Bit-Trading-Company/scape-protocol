@@ -1,5 +1,5 @@
 {
-  "description": "Signed by a key that is not the named signing key.",
+  "description": "Names the listed signing key, but was signed by another.",
   "context": {
     "keylog": [
       {
@@ -41,10 +41,10 @@
     "body": {
       "displayName": "Ada"
     },
-    "keylogSeq": 0,
     "sig": {
-      "key": "main",
-      "value": "nNsi5nNnU-nT8CL9F1wmC2K8Mll6ThZTHskFX4SKUCR2EDjNI10NvxbtLVUcdjzl-WbWNJzk9U0P7DU4jkgwDQ"
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 0,
+      "value": "awHn_zih8ZnRgg7Qa1g5LPhbHEv2JA6xqnCCSWjzWTFCcy_xUcLffECrlFHr191BWli-WQ9f58CZoHZ6qeiQBA"
     }
   },
   "expect": {

@@ -42,14 +42,14 @@
       "displayName": "Ada",
       "com.example.badge": "gold"
     },
-    "keylogSeq": 0,
     "sig": {
-      "key": "main",
-      "value": "TC3XZYBrV9zMgUpuwbuJ20wfyD0xtIH0XUbn3K3jfDyQhjAIXNzDSpvsfxzSFAZ2Jt_4UF65YYb4YPsODMw0CQ"
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 0,
+      "value": "0TcsHPearU3OcvrAA1SPsYVquJ0pWByl_8MVhKXULO7fhJK6IhHlCjyspjXP8CBTbPEplADKV-ek0yZdLjg0Aw"
     }
   },
   "expect": {
     "valid": true,
-    "cid": "sha256:823ad0f04431b8650995b099bdd3ca26bfe25f0e7f1b045ec8bde904099260e3"
+    "cid": "sha256:b8e38027f24934befeeaec3f6c7c494929d068ae29fadf3f186976deb926fe4e"
   }
 }

@@ -1,0 +1,85 @@
+{
+  "description": "A key’s restrictions are those of the latest entry that lists it, so tightening them applies to past signatures.",
+  "context": {
+    "keylog": [
+      {
+        "v": 0,
+        "account": null,
+        "seq": 0,
+        "prev": null,
+        "rotationKeys": [
+          "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+        ],
+        "signingKeys": {
+          "main": {
+            "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+          }
+        },
+        "revokedKeys": [],
+        "handles": [
+          "ada.host.example"
+        ],
+        "hosts": [
+          "https://host.example"
+        ],
+        "created": "2026-10-17T09:00:00.000Z",
+        "sig": {
+          "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+          "value": "oUT8uFh_YkpWLVMBarsJeRHaWAmr7ElUvEENSKWLXmeo9brM4nhBK4k508_Nb9hhrCUbXVgCerI_HGiRptBqCw"
+        }
+      },
+      {
+        "v": 0,
+        "account": "yhndxggbfkwpaq2l3b3i46mf",
+        "seq": 1,
+        "prev": "sha256:c1da3b98c12aacf0434bd8768e798561151dd240b982575cd4989bd6ac8c3f1b",
+        "rotationKeys": [
+          "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+        ],
+        "signingKeys": {
+          "main": {
+            "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+            "restrict": {
+              "types": [
+                "file"
+              ]
+            }
+          }
+        },
+        "revokedKeys": [],
+        "handles": [
+          "ada.host.example"
+        ],
+        "hosts": [
+          "https://host.example"
+        ],
+        "created": "2026-10-17T09:01:00.000Z",
+        "sig": {
+          "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+          "value": "WK8bpT-96oi7ggDnoO0NBvBI9PF5q4qriw09AqqVEZ0ZVxtQ9LLqufZdWRZKnH7hDY_6sZOcDxDmxK7SxlXIBA"
+        }
+      }
+    ]
+  },
+  "input": {
+    "v": 0,
+    "account": "yhndxggbfkwpaq2l3b3i46mf",
+    "type": "profile",
+    "rkey": "self",
+    "prev": null,
+    "created": "2026-10-17T09:10:00.000Z",
+    "license": "LicenseRef-scape-1.0",
+    "body": {
+      "displayName": "Ada"
+    },
+    "sig": {
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 0,
+      "value": "_htNPtlG4ErLoDKPxE9UCRtylMaTfBZaYN2YEbjtLyiIjjV6iWmqBSyDBvLYnpEnbuCI3MsxlAGmp4kL6bmlDA"
+    }
+  },
+  "expect": {
+    "valid": false,
+    "reason": "key_restricted"
+  }
+}

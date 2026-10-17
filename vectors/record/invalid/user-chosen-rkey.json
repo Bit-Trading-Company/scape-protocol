@@ -1,0 +1,83 @@
+{
+  "description": "An rkey is self or a generated TID, never user-chosen text: the repository log keeps it forever.",
+  "context": {
+    "keylog": [
+      {
+        "v": 0,
+        "account": null,
+        "seq": 0,
+        "prev": null,
+        "rotationKeys": [
+          "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+        ],
+        "signingKeys": {
+          "main": {
+            "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+          }
+        },
+        "revokedKeys": [],
+        "handles": [
+          "ada.host.example"
+        ],
+        "hosts": [
+          "https://host.example"
+        ],
+        "created": "2026-10-17T09:00:00.000Z",
+        "sig": {
+          "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+          "value": "oUT8uFh_YkpWLVMBarsJeRHaWAmr7ElUvEENSKWLXmeo9brM4nhBK4k508_Nb9hhrCUbXVgCerI_HGiRptBqCw"
+        }
+      }
+    ]
+  },
+  "input": {
+    "v": 0,
+    "account": "yhndxggbfkwpaq2l3b3i46mf",
+    "type": "scape",
+    "rkey": "links",
+    "prev": null,
+    "created": "2026-10-17T09:10:00.000Z",
+    "license": "LicenseRef-scape-1.0",
+    "body": {
+      "title": "Ada's links",
+      "entry": "index.html",
+      "files": {
+        "index.html": {
+          "sha256": "f858b57d9f2842fb2a72e0393ea2e1d5d31dc60ca377d84cf94d196d1e9a374a",
+          "size": 13,
+          "mime": "text/html"
+        },
+        "about/index.html": {
+          "sha256": "3fc557d15e2108a348b353585d23b0f11c965ddc6c4e3019dc7b9cfa5dc5f6d1",
+          "size": 15,
+          "mime": "text/html"
+        },
+        "assets/site.css": {
+          "sha256": "950712d74ef3d23c39fc13b7ed8e3efaf3b8be4dbf1fb9e6b8376d11556245e9",
+          "size": 20,
+          "mime": "text/css"
+        },
+        "404.html": {
+          "sha256": "6af3c3994f364a4a531f7f81a43bcdff16feb3589d56cf35b733d2ef76651e07",
+          "size": 18,
+          "mime": "text/html"
+        }
+      },
+      "uses": {
+        "functions": [
+          "account.get"
+        ]
+      },
+      "generator": "meme-vectors"
+    },
+    "sig": {
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 0,
+      "value": "XPLbjusamGeDqrstgeGhv3e34NLqHgejWk6Y_4Jne-3CTq_kNgtVBfySeGV8FIISQSd3s7PIg8Nz7cuvmptABA"
+    }
+  },
+  "expect": {
+    "valid": false,
+    "reason": "bad_shape"
+  }
+}
