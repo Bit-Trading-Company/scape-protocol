@@ -1,0 +1,35 @@
+{
+  "description": "The genesis entry has account: null.",
+  "input": [
+    {
+      "v": 0,
+      "account": "aaaaaaaaaaaaaaaaaaaaaaaa",
+      "seq": 0,
+      "prev": null,
+      "rotationKeys": [
+        "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+      ],
+      "signingKeys": {
+        "main": {
+          "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+        }
+      },
+      "revokedKeys": [],
+      "handles": [
+        "ada.host.example"
+      ],
+      "hosts": [
+        "https://host.example"
+      ],
+      "created": "2026-10-17T09:00:00.000Z",
+      "sig": {
+        "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+        "value": "M1ZocXo3TDT24b2HX6v4x9FShI8WObXlUXNTTfOQhmtwm4Py1TW1uO_J0yhur8IM0AX-fTkH-3qYFAF2o7vXDw"
+      }
+    }
+  ],
+  "expect": {
+    "valid": false,
+    "reason": "bad_account"
+  }
+}

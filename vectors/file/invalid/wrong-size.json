@@ -1,0 +1,15 @@
+{
+  "description": "Bytes that do not match size.",
+  "input": {
+    "bytes": "aGVsbG8sIG1lbWUK",
+    "ref": {
+      "sha256": "96340bffca0bbc0620ad601306d4976dd561673666941cddd8ee6abdb4d8e917",
+      "size": 13,
+      "mime": "text/plain"
+    }
+  },
+  "expect": {
+    "valid": false,
+    "reason": "bad_size"
+  }
+}

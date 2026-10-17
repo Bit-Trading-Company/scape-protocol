@@ -1,0 +1,36 @@
+{
+  "description": "Plain http is allowed for localhost, for development.",
+  "input": [
+    {
+      "v": 0,
+      "account": null,
+      "seq": 0,
+      "prev": null,
+      "rotationKeys": [
+        "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+      ],
+      "signingKeys": {
+        "main": {
+          "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+        }
+      },
+      "revokedKeys": [],
+      "handles": [
+        "ada.host.example"
+      ],
+      "hosts": [
+        "http://localhost:8787"
+      ],
+      "created": "2026-10-17T09:00:00.000Z",
+      "sig": {
+        "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+        "value": "fAPkPmu9CUwWumqvfm65OBrid1QcYkRPdYBkjBdZndd06alg1gi9SB31jSWHZzvUXwUTCye7LVR5T8hzyuErCA"
+      }
+    }
+  ],
+  "expect": {
+    "valid": true,
+    "account": "paudwvdtzqcfhaeeooj6gdhb",
+    "headHash": "sha256:78283b5473cc045380847393e30ce1d5018c9fdd614d6484ecd00760b8cb93cd"
+  }
+}

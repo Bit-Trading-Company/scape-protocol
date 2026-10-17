@@ -1,0 +1,40 @@
+{
+  "description": "Without 404.html, a miss is an empty 404.",
+  "input": {
+    "title": "Ada's links",
+    "entry": "index.html",
+    "files": {
+      "index.html": {
+        "sha256": "f858b57d9f2842fb2a72e0393ea2e1d5d31dc60ca377d84cf94d196d1e9a374a",
+        "size": 13,
+        "mime": "text/html"
+      },
+      "about/index.html": {
+        "sha256": "3fc557d15e2108a348b353585d23b0f11c965ddc6c4e3019dc7b9cfa5dc5f6d1",
+        "size": 15,
+        "mime": "text/html"
+      },
+      "assets/site.css": {
+        "sha256": "950712d74ef3d23c39fc13b7ed8e3efaf3b8be4dbf1fb9e6b8376d11556245e9",
+        "size": 20,
+        "mime": "text/css"
+      }
+    },
+    "uses": {
+      "functions": [
+        "account.get"
+      ]
+    },
+    "generator": "meme-vectors"
+  },
+  "expect": {
+    "valid": true,
+    "serve": [
+      {
+        "request": "/missing",
+        "path": null,
+        "status": 404
+      }
+    ]
+  }
+}

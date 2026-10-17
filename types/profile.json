@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "profile",
+  "description": "An account's public profile. rkey: self.",
+  "type": "object",
+  "properties": {
+    "displayName": {
+      "type": "string",
+      "maxLength": 64
+    },
+    "bio": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "avatar": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/fileRef"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "mime": {
+              "type": "string",
+              "pattern": "^image/"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "fileRef": {
+      "type": "object",
+      "required": ["sha256", "size", "mime"],
+      "properties": {
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mime": {
+          "type": "string",
+          "maxLength": 255,
+          "pattern": "^[a-z0-9][a-z0-9!#$&^_.+-]*/[a-z0-9][a-z0-9!#$&^_.+-]*$"
+        }
+      }
+    }
+  }
+}

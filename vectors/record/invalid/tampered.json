@@ -1,0 +1,54 @@
+{
+  "description": "The body changed after signing.",
+  "context": {
+    "keylog": [
+      {
+        "v": 0,
+        "account": null,
+        "seq": 0,
+        "prev": null,
+        "rotationKeys": [
+          "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+        ],
+        "signingKeys": {
+          "main": {
+            "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+          }
+        },
+        "revokedKeys": [],
+        "handles": [
+          "ada.host.example"
+        ],
+        "hosts": [
+          "https://host.example"
+        ],
+        "created": "2026-10-17T09:00:00.000Z",
+        "sig": {
+          "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+          "value": "oUT8uFh_YkpWLVMBarsJeRHaWAmr7ElUvEENSKWLXmeo9brM4nhBK4k508_Nb9hhrCUbXVgCerI_HGiRptBqCw"
+        }
+      }
+    ]
+  },
+  "input": {
+    "v": 0,
+    "account": "yhndxggbfkwpaq2l3b3i46mf",
+    "type": "profile",
+    "rkey": "self",
+    "prev": null,
+    "created": "2026-10-17T09:10:00.000Z",
+    "license": "LicenseRef-scape-1.0",
+    "body": {
+      "displayName": "Eve"
+    },
+    "keylogSeq": 0,
+    "sig": {
+      "key": "main",
+      "value": "SVqDBblEVQFVGF1z3B0V-e0-kDqd4YruriPO7zPYAFPvACgRwc8MR4CqGp8y5zwcIll3xSz1x2v0iJcrYv93Ag"
+    }
+  },
+  "expect": {
+    "valid": false,
+    "reason": "bad_signature"
+  }
+}

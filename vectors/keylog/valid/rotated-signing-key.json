@@ -1,0 +1,62 @@
+{
+  "description": "Entry 1 replaces the signing key, signed by the rotation key from entry 0.",
+  "input": [
+    {
+      "v": 0,
+      "account": null,
+      "seq": 0,
+      "prev": null,
+      "rotationKeys": [
+        "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+      ],
+      "signingKeys": {
+        "main": {
+          "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+        }
+      },
+      "revokedKeys": [],
+      "handles": [
+        "ada.host.example"
+      ],
+      "hosts": [
+        "https://host.example"
+      ],
+      "created": "2026-10-17T09:00:00.000Z",
+      "sig": {
+        "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+        "value": "oUT8uFh_YkpWLVMBarsJeRHaWAmr7ElUvEENSKWLXmeo9brM4nhBK4k508_Nb9hhrCUbXVgCerI_HGiRptBqCw"
+      }
+    },
+    {
+      "v": 0,
+      "account": "yhndxggbfkwpaq2l3b3i46mf",
+      "seq": 1,
+      "prev": "sha256:c1da3b98c12aacf0434bd8768e798561151dd240b982575cd4989bd6ac8c3f1b",
+      "rotationKeys": [
+        "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+      ],
+      "signingKeys": {
+        "main": {
+          "key": "z6Mkv11xXDtq3X1j7v1VbwzVR9MfMLR7M32fg7twf9nDHfr6"
+        }
+      },
+      "revokedKeys": [],
+      "handles": [
+        "ada.host.example"
+      ],
+      "hosts": [
+        "https://host.example"
+      ],
+      "created": "2026-10-17T09:01:00.000Z",
+      "sig": {
+        "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+        "value": "4qX0mNV5qVtdu3ufxwAL8RYRxFx0PFQkVdMquaw7U039PoAj3jwU0bWRW9cZyhUh9P_Yfvc1alwhWtJ0ue_kCQ"
+      }
+    }
+  ],
+  "expect": {
+    "valid": true,
+    "account": "yhndxggbfkwpaq2l3b3i46mf",
+    "headHash": "sha256:77e303b806c91d42e46b676d561f8e9c6323bd4daddba222ebf868e08655fbf7"
+  }
+}

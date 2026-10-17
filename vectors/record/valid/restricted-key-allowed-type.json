@@ -1,0 +1,94 @@
+{
+  "description": "A restricted key signing a type it is allowed.",
+  "context": {
+    "keylog": [
+      {
+        "v": 0,
+        "account": null,
+        "seq": 0,
+        "prev": null,
+        "rotationKeys": [
+          "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+        ],
+        "signingKeys": {
+          "main": {
+            "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+          }
+        },
+        "revokedKeys": [],
+        "handles": [
+          "ada.host.example"
+        ],
+        "hosts": [
+          "https://host.example"
+        ],
+        "created": "2026-10-17T09:00:00.000Z",
+        "sig": {
+          "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+          "value": "oUT8uFh_YkpWLVMBarsJeRHaWAmr7ElUvEENSKWLXmeo9brM4nhBK4k508_Nb9hhrCUbXVgCerI_HGiRptBqCw"
+        }
+      },
+      {
+        "v": 0,
+        "account": "yhndxggbfkwpaq2l3b3i46mf",
+        "seq": 1,
+        "prev": "sha256:c1da3b98c12aacf0434bd8768e798561151dd240b982575cd4989bd6ac8c3f1b",
+        "rotationKeys": [
+          "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+        ],
+        "signingKeys": {
+          "main": {
+            "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+          },
+          "phone": {
+            "key": "z6MknmhvSosweyXmhaPXe94MKef77MH3nniBNkSg4nkcs9CP",
+            "restrict": {
+              "types": [
+                "post",
+                "file"
+              ]
+            }
+          }
+        },
+        "revokedKeys": [],
+        "handles": [
+          "ada.host.example"
+        ],
+        "hosts": [
+          "https://host.example"
+        ],
+        "created": "2026-10-17T09:01:00.000Z",
+        "sig": {
+          "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+          "value": "y3r-iYNv-YfwjYYz9fPYaml8bFXGYjnYpnliT417XjhBk7zDusbjK11ZZwu2mA1X49UrS9w-LD9TvyRfyLv8CQ"
+        }
+      }
+    ]
+  },
+  "input": {
+    "v": 0,
+    "account": "yhndxggbfkwpaq2l3b3i46mf",
+    "type": "file",
+    "rkey": "3l2kq7xxa2c2s",
+    "prev": null,
+    "created": "2026-10-17T09:10:00.000Z",
+    "license": "LicenseRef-scape-1.0",
+    "body": {
+      "blob": {
+        "sha256": "21ac2586e213d1f490778a07bf0025a98fc57595863a282372bac594b398322b",
+        "size": 17,
+        "mime": "image/jpeg"
+      },
+      "name": "photo.jpg"
+    },
+    "keylogSeq": 1,
+    "sig": {
+      "key": "phone",
+      "value": "-TpwBLjzWRQ85fecbywfaijzPBPX68U53_Le5XF-bQmHRYDXNSuiFWufXXterPUM7I8WGyIsXfnXun3aSqGUDw"
+    }
+  },
+  "expect": {
+    "valid": true,
+    "cid": "sha256:8ff31ba95f83ae98a5bfad811a54ccdd0c1dfc1ea1e1c068ded8477c14cf82de"
+  }
+}

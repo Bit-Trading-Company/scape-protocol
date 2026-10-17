@@ -1,0 +1,89 @@
+{
+  "description": "Restrictions fail closed: a key with an unknown restriction is unusable.",
+  "context": {
+    "keylog": [
+      {
+        "v": 0,
+        "account": null,
+        "seq": 0,
+        "prev": null,
+        "rotationKeys": [
+          "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+        ],
+        "signingKeys": {
+          "main": {
+            "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+          }
+        },
+        "revokedKeys": [],
+        "handles": [
+          "ada.host.example"
+        ],
+        "hosts": [
+          "https://host.example"
+        ],
+        "created": "2026-10-17T09:00:00.000Z",
+        "sig": {
+          "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+          "value": "oUT8uFh_YkpWLVMBarsJeRHaWAmr7ElUvEENSKWLXmeo9brM4nhBK4k508_Nb9hhrCUbXVgCerI_HGiRptBqCw"
+        }
+      },
+      {
+        "v": 0,
+        "account": "yhndxggbfkwpaq2l3b3i46mf",
+        "seq": 1,
+        "prev": "sha256:c1da3b98c12aacf0434bd8768e798561151dd240b982575cd4989bd6ac8c3f1b",
+        "rotationKeys": [
+          "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+        ],
+        "signingKeys": {
+          "main": {
+            "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+          },
+          "phone": {
+            "key": "z6MknmhvSosweyXmhaPXe94MKef77MH3nniBNkSg4nkcs9CP",
+            "restrict": {
+              "types": [
+                "post"
+              ],
+              "expires": "2026-10-17T10:00:00.000Z"
+            }
+          }
+        },
+        "revokedKeys": [],
+        "handles": [
+          "ada.host.example"
+        ],
+        "hosts": [
+          "https://host.example"
+        ],
+        "created": "2026-10-17T09:01:00.000Z",
+        "sig": {
+          "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+          "value": "1WccsGkWJI-qFXwOulU_49cTLoY3uHsJ5MTdc4Q-PrOObLYlk9HhosCHoP4dRFj0gBkAFgfjeu5pPwrEKXLQBQ"
+        }
+      }
+    ]
+  },
+  "input": {
+    "v": 0,
+    "account": "yhndxggbfkwpaq2l3b3i46mf",
+    "type": "post",
+    "rkey": "3l2kq7xxa2c2u",
+    "prev": null,
+    "created": "2026-10-17T09:10:00.000Z",
+    "license": "LicenseRef-scape-1.0",
+    "body": {
+      "text": "hi"
+    },
+    "keylogSeq": 1,
+    "sig": {
+      "key": "phone",
+      "value": "N9YweZE3-4uG1JKRQ6mSnaOm3xXoL35s8FzDkCqUw5nxnCs1LzEiyZzvEF2Gt859K2kMF1mLYBGAtMN1UsmiDA"
+    }
+  },
+  "expect": {
+    "valid": false,
+    "reason": "unknown_restriction"
+  }
+}

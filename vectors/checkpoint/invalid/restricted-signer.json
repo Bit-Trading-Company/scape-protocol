@@ -1,0 +1,84 @@
+{
+  "description": "Restricted keys cannot sign checkpoints.",
+  "context": {
+    "keylog": [
+      {
+        "v": 0,
+        "account": null,
+        "seq": 0,
+        "prev": null,
+        "rotationKeys": [
+          "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+        ],
+        "signingKeys": {
+          "main": {
+            "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+          }
+        },
+        "revokedKeys": [],
+        "handles": [
+          "ada.host.example"
+        ],
+        "hosts": [
+          "https://host.example"
+        ],
+        "created": "2026-10-17T09:00:00.000Z",
+        "sig": {
+          "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+          "value": "oUT8uFh_YkpWLVMBarsJeRHaWAmr7ElUvEENSKWLXmeo9brM4nhBK4k508_Nb9hhrCUbXVgCerI_HGiRptBqCw"
+        }
+      },
+      {
+        "v": 0,
+        "account": "yhndxggbfkwpaq2l3b3i46mf",
+        "seq": 1,
+        "prev": "sha256:c1da3b98c12aacf0434bd8768e798561151dd240b982575cd4989bd6ac8c3f1b",
+        "rotationKeys": [
+          "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+        ],
+        "signingKeys": {
+          "main": {
+            "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+          },
+          "phone": {
+            "key": "z6MknmhvSosweyXmhaPXe94MKef77MH3nniBNkSg4nkcs9CP",
+            "restrict": {
+              "types": [
+                "post",
+                "file"
+              ]
+            }
+          }
+        },
+        "revokedKeys": [],
+        "handles": [
+          "ada.host.example"
+        ],
+        "hosts": [
+          "https://host.example"
+        ],
+        "created": "2026-10-17T09:01:00.000Z",
+        "sig": {
+          "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+          "value": "y3r-iYNv-YfwjYYz9fPYaml8bFXGYjnYpnliT417XjhBk7zDusbjK11ZZwu2mA1X49UrS9w-LD9TvyRfyLv8CQ"
+        }
+      }
+    ]
+  },
+  "input": {
+    "v": 0,
+    "account": "yhndxggbfkwpaq2l3b3i46mf",
+    "seq": 3,
+    "head": "sha256:694b91ed9592b1e4ddbd478773888162fe9db91a3d3b5ff0f801e9158468ee00",
+    "created": "2026-10-17T09:23:00.000Z",
+    "keylogSeq": 1,
+    "sig": {
+      "key": "phone",
+      "value": "6RAWUYnPjci41Y0cawuf22Ahk80wQjdusztt2dLC7iv5AfrzpZXhIk0mfopGGSiiHzjD7WMlh76Zu0Lg7WDRAA"
+    }
+  },
+  "expect": {
+    "valid": false,
+    "reason": "key_restricted"
+  }
+}

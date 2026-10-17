@@ -1,0 +1,71 @@
+{
+  "description": "A signing key restricted to some record types.",
+  "input": [
+    {
+      "v": 0,
+      "account": null,
+      "seq": 0,
+      "prev": null,
+      "rotationKeys": [
+        "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+      ],
+      "signingKeys": {
+        "main": {
+          "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+        }
+      },
+      "revokedKeys": [],
+      "handles": [
+        "ada.host.example"
+      ],
+      "hosts": [
+        "https://host.example"
+      ],
+      "created": "2026-10-17T09:00:00.000Z",
+      "sig": {
+        "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+        "value": "oUT8uFh_YkpWLVMBarsJeRHaWAmr7ElUvEENSKWLXmeo9brM4nhBK4k508_Nb9hhrCUbXVgCerI_HGiRptBqCw"
+      }
+    },
+    {
+      "v": 0,
+      "account": "yhndxggbfkwpaq2l3b3i46mf",
+      "seq": 1,
+      "prev": "sha256:c1da3b98c12aacf0434bd8768e798561151dd240b982575cd4989bd6ac8c3f1b",
+      "rotationKeys": [
+        "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+      ],
+      "signingKeys": {
+        "main": {
+          "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+        },
+        "phone": {
+          "key": "z6MknmhvSosweyXmhaPXe94MKef77MH3nniBNkSg4nkcs9CP",
+          "restrict": {
+            "types": [
+              "post",
+              "file"
+            ]
+          }
+        }
+      },
+      "revokedKeys": [],
+      "handles": [
+        "ada.host.example"
+      ],
+      "hosts": [
+        "https://host.example"
+      ],
+      "created": "2026-10-17T09:01:00.000Z",
+      "sig": {
+        "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+        "value": "y3r-iYNv-YfwjYYz9fPYaml8bFXGYjnYpnliT417XjhBk7zDusbjK11ZZwu2mA1X49UrS9w-LD9TvyRfyLv8CQ"
+      }
+    }
+  ],
+  "expect": {
+    "valid": true,
+    "account": "yhndxggbfkwpaq2l3b3i46mf",
+    "headHash": "sha256:a6b4b5c9eb1c8f2da5b6d8de7523fca177de7b19a662606f4b1be1ef5019e93d"
+  }
+}

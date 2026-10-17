@@ -1,0 +1,61 @@
+{
+  "description": "prev must be the hash of the previous entry.",
+  "input": [
+    {
+      "v": 0,
+      "account": null,
+      "seq": 0,
+      "prev": null,
+      "rotationKeys": [
+        "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+      ],
+      "signingKeys": {
+        "main": {
+          "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+        }
+      },
+      "revokedKeys": [],
+      "handles": [
+        "ada.host.example"
+      ],
+      "hosts": [
+        "https://host.example"
+      ],
+      "created": "2026-10-17T09:00:00.000Z",
+      "sig": {
+        "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+        "value": "oUT8uFh_YkpWLVMBarsJeRHaWAmr7ElUvEENSKWLXmeo9brM4nhBK4k508_Nb9hhrCUbXVgCerI_HGiRptBqCw"
+      }
+    },
+    {
+      "v": 0,
+      "account": "yhndxggbfkwpaq2l3b3i46mf",
+      "seq": 1,
+      "prev": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "rotationKeys": [
+        "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+      ],
+      "signingKeys": {
+        "main": {
+          "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+        }
+      },
+      "revokedKeys": [],
+      "handles": [
+        "ada.host.example"
+      ],
+      "hosts": [
+        "https://host.example"
+      ],
+      "created": "2026-10-17T09:01:00.000Z",
+      "sig": {
+        "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+        "value": "2OQTA0xcoWVLB17Agee-YDp3uuDJ78QgpEh65P3q73g9801LfzPnCo1N_7r4wRyZ1Gkg1yC8Yzd3tCInilrtDA"
+      }
+    }
+  ],
+  "expect": {
+    "valid": false,
+    "reason": "bad_prev"
+  }
+}

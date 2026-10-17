@@ -1,0 +1,43 @@
+{
+  "name": "@scape/meme",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The MEME protocol: specification, reference library, test vectors and conformance suite.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "exports": {
+    ".": "./src/index.ts",
+    "./types/*.json": "./types/*.json"
+  },
+  "scripts": {
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --dir test",
+    "vectors": "tsx scripts/gen-vectors.ts",
+    "conformance": "tsx conformance/cli.ts"
+  },
+  "dependencies": {
+    "@noble/curves": "2.4.0",
+    "@noble/hashes": "2.4.0",
+    "@scure/base": "2.4.0",
+    "ajv": "8.20.0",
+    "canonicalize": "5.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.19.2",
+    "eslint": "10.13.0",
+    "eslint-config-prettier": "10.1.8",
+    "globals": "17.13.0",
+    "prettier": "3.9.10",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.2",
+    "vitest": "5.0.5"
+  }
+}

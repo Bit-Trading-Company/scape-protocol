@@ -1,0 +1,49 @@
+{
+  "description": "The checkpoint names another account.",
+  "context": {
+    "keylog": [
+      {
+        "v": 0,
+        "account": null,
+        "seq": 0,
+        "prev": null,
+        "rotationKeys": [
+          "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+        ],
+        "signingKeys": {
+          "main": {
+            "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+          }
+        },
+        "revokedKeys": [],
+        "handles": [
+          "ada.host.example"
+        ],
+        "hosts": [
+          "https://host.example"
+        ],
+        "created": "2026-10-17T09:00:00.000Z",
+        "sig": {
+          "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+          "value": "oUT8uFh_YkpWLVMBarsJeRHaWAmr7ElUvEENSKWLXmeo9brM4nhBK4k508_Nb9hhrCUbXVgCerI_HGiRptBqCw"
+        }
+      }
+    ]
+  },
+  "input": {
+    "v": 0,
+    "account": "aaaaaaaaaaaaaaaaaaaaaaaa",
+    "seq": 3,
+    "head": "sha256:694b91ed9592b1e4ddbd478773888162fe9db91a3d3b5ff0f801e9158468ee00",
+    "created": "2026-10-17T09:23:00.000Z",
+    "keylogSeq": 0,
+    "sig": {
+      "key": "main",
+      "value": "-6KNgZf5Dsz9kMfIJ5Z2s_6Hb8dRDHsjIwp5ExbbusaKJf32LFok1FWCRLF2KGtG0DxtPHPePLL3kIwMjhDiCQ"
+    }
+  },
+  "expect": {
+    "valid": false,
+    "reason": "bad_account"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "description": "At most 5 rotation keys.",
+  "input": [
+    {
+      "v": 0,
+      "account": null,
+      "seq": 0,
+      "prev": null,
+      "rotationKeys": [
+        "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+        "z6MkgFA5DcT6yQamhn6HAeaHz3kXPVNXo2fEyQkPJvQujYRe",
+        "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+        "z6Mkv11xXDtq3X1j7v1VbwzVR9MfMLR7M32fg7twf9nDHfr6",
+        "z6MknmhvSosweyXmhaPXe94MKef77MH3nniBNkSg4nkcs9CP",
+        "z6MkpvUpArbjyw7gfwdgeRWBzgeP4B5UU7Uv1tqypQEZKb3J"
+      ],
+      "signingKeys": {
+        "main": {
+          "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+        }
+      },
+      "revokedKeys": [],
+      "handles": [
+        "ada.host.example"
+      ],
+      "hosts": [
+        "https://host.example"
+      ],
+      "created": "2026-10-17T09:00:00.000Z",
+      "sig": {
+        "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+        "value": "ZZwB4u94_O-nY-zjQHRuH2R48OUh8y30gPfbRHg2g1ONfYxTp0SWsdP24QyeN5Z2EJORV5I-h4WdM8sAojcLCg"
+      }
+    }
+  ],
+  "expect": {
+    "valid": false,
+    "reason": "bad_shape"
+  }
+}

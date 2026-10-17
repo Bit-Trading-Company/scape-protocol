@@ -1,0 +1,15 @@
+{
+  "description": "Bytes that do not match sha256.",
+  "input": {
+    "bytes": "aGVsbG8sIG1lbWUK",
+    "ref": {
+      "sha256": "d9298a10d1b0735837dc4bd85dac641b0f3cef27a47e5d53a54f2f3f5b2fcffa",
+      "size": 12,
+      "mime": "text/plain"
+    }
+  },
+  "expect": {
+    "valid": false,
+    "reason": "bad_hash"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "scape",
+  "description": "A scape bundle manifest. rkey: the scape's slug. Path rules are checked beyond this schema (spec: Scape bundles).",
+  "type": "object",
+  "required": ["entry", "files"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "entry": {
+      "type": "string"
+    },
+    "files": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/fileRef"
+      }
+    },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "version", "manifest"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "version": {
+            "type": "string",
+            "maxLength": 64
+          },
+          "manifest": {
+            "$ref": "#/$defs/fileRef"
+          }
+        }
+      }
+    },
+    "uses": {
+      "type": "object",
+      "properties": {
+        "records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/recordRef"
+          }
+        },
+        "functions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 128
+          }
+        }
+      }
+    },
+    "generator": {
+      "type": "string",
+      "maxLength": 128
+    }
+  },
+  "$defs": {
+    "fileRef": {
+      "type": "object",
+      "required": ["sha256", "size", "mime"],
+      "properties": {
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mime": {
+          "type": "string",
+          "maxLength": 255,
+          "pattern": "^[a-z0-9][a-z0-9!#$&^_.+-]*/[a-z0-9][a-z0-9!#$&^_.+-]*$"
+        }
+      }
+    },
+    "recordRef": {
+      "type": "object",
+      "required": ["account", "type", "rkey"],
+      "properties": {
+        "account": {
+          "type": "string",
+          "pattern": "^[a-z2-7]{24}$"
+        },
+        "type": {
+          "type": "string",
+          "maxLength": 253
+        },
+        "rkey": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+        },
+        "cid": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "host": {
+          "type": "string",
+          "maxLength": 2048
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "description": "Unknown fields are ignored, but covered by the signature and the account ID.",
+  "input": [
+    {
+      "v": 0,
+      "account": null,
+      "seq": 0,
+      "prev": null,
+      "rotationKeys": [
+        "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+      ],
+      "signingKeys": {
+        "main": {
+          "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+        }
+      },
+      "revokedKeys": [],
+      "handles": [
+        "ada.host.example"
+      ],
+      "hosts": [
+        "https://host.example"
+      ],
+      "created": "2026-10-17T09:00:00.000Z",
+      "note": "readers ignore fields they do not know",
+      "sig": {
+        "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+        "value": "Q5HZ1Ouq9-aVxgzE6Z_KUGlnCNQ5QaWm3I4iQJaJL1cP38DPMGabJF37zQPSyR9EXReuClwm1yJXXwSVxuJfDA"
+      }
+    }
+  ],
+  "expect": {
+    "valid": true,
+    "account": "ggvd5towwmdr2eioidp7qggu",
+    "headHash": "sha256:31aa3ecdd6b3071d110e40dff818d4928c402d5ce722627e978d944dbe450fd0"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "description": "A signed deletion.",
+  "context": {
+    "keylog": [
+      {
+        "v": 0,
+        "account": null,
+        "seq": 0,
+        "prev": null,
+        "rotationKeys": [
+          "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+        ],
+        "signingKeys": {
+          "main": {
+            "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+          }
+        },
+        "revokedKeys": [],
+        "handles": [
+          "ada.host.example"
+        ],
+        "hosts": [
+          "https://host.example"
+        ],
+        "created": "2026-10-17T09:00:00.000Z",
+        "sig": {
+          "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+          "value": "oUT8uFh_YkpWLVMBarsJeRHaWAmr7ElUvEENSKWLXmeo9brM4nhBK4k508_Nb9hhrCUbXVgCerI_HGiRptBqCw"
+        }
+      }
+    ]
+  },
+  "input": {
+    "v": 0,
+    "account": "yhndxggbfkwpaq2l3b3i46mf",
+    "type": "profile",
+    "rkey": "self",
+    "prev": "sha256:642c15c7619ccd8faaa38f1bd36b0948e7655b07f2beb8756e1cc55ac0d5d430",
+    "created": "2026-10-17T09:12:00.000Z",
+    "license": "LicenseRef-scape-1.0",
+    "body": null,
+    "keylogSeq": 0,
+    "deleted": true,
+    "sig": {
+      "key": "main",
+      "value": "Li9WVezmy0z6L74-eDOJD55d2VFY0vwJdnZ3vO-xZcIqtUVDRIgX58eYmux0GUZBctPsqJP9wBejKpiFdivXAg"
+    }
+  },
+  "expect": {
+    "valid": true,
+    "cid": "sha256:e2c5372842c6ab412c3040c0b5e060a0e1d06143b0e91252478b91361f010a13"
+  }
+}

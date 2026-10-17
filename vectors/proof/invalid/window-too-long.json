@@ -1,0 +1,53 @@
+{
+  "description": "Valid for more than 5 minutes.",
+  "context": {
+    "keylog": [
+      {
+        "v": 0,
+        "account": null,
+        "seq": 0,
+        "prev": null,
+        "rotationKeys": [
+          "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+        ],
+        "signingKeys": {
+          "main": {
+            "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+          }
+        },
+        "revokedKeys": [],
+        "handles": [
+          "ada.host.example"
+        ],
+        "hosts": [
+          "https://host.example"
+        ],
+        "created": "2026-10-17T09:00:00.000Z",
+        "sig": {
+          "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+          "value": "oUT8uFh_YkpWLVMBarsJeRHaWAmr7ElUvEENSKWLXmeo9brM4nhBK4k508_Nb9hhrCUbXVgCerI_HGiRptBqCw"
+        }
+      }
+    ],
+    "audience": "https://app.example",
+    "nonce": "cBIrNtOpMrrI2FA3Kg1l4vqJ_vkdfDFJohGosZn-33g",
+    "now": "2026-10-17T09:31:00.000Z"
+  },
+  "input": {
+    "v": 0,
+    "account": "yhndxggbfkwpaq2l3b3i46mf",
+    "audience": "https://app.example",
+    "nonce": "cBIrNtOpMrrI2FA3Kg1l4vqJ_vkdfDFJohGosZn-33g",
+    "issued": "2026-10-17T09:30:00.000Z",
+    "expires": "2026-10-17T09:36:00.000Z",
+    "keylogSeq": 0,
+    "sig": {
+      "key": "main",
+      "value": "A3NavSJFskN-3T5WupfainTwUxsmLrtTMLCldK65rHC2Co9d23igBfGqgZzmb-Bw6tplZC6z0dfb8uV1X9V9Ag"
+    }
+  },
+  "expect": {
+    "valid": false,
+    "reason": "window_too_long"
+  }
+}

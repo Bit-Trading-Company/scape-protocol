@@ -1,0 +1,89 @@
+{
+  "description": "Nothing follows a deactivation.",
+  "input": [
+    {
+      "v": 0,
+      "account": null,
+      "seq": 0,
+      "prev": null,
+      "rotationKeys": [
+        "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+      ],
+      "signingKeys": {
+        "main": {
+          "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+        }
+      },
+      "revokedKeys": [],
+      "handles": [
+        "ada.host.example"
+      ],
+      "hosts": [
+        "https://host.example"
+      ],
+      "created": "2026-10-17T09:00:00.000Z",
+      "sig": {
+        "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+        "value": "oUT8uFh_YkpWLVMBarsJeRHaWAmr7ElUvEENSKWLXmeo9brM4nhBK4k508_Nb9hhrCUbXVgCerI_HGiRptBqCw"
+      }
+    },
+    {
+      "v": 0,
+      "account": "yhndxggbfkwpaq2l3b3i46mf",
+      "seq": 1,
+      "prev": "sha256:c1da3b98c12aacf0434bd8768e798561151dd240b982575cd4989bd6ac8c3f1b",
+      "rotationKeys": [
+        "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+      ],
+      "signingKeys": {
+        "main": {
+          "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+        }
+      },
+      "revokedKeys": [],
+      "handles": [
+        "ada.host.example"
+      ],
+      "hosts": [
+        "https://host.example"
+      ],
+      "created": "2026-10-17T09:01:00.000Z",
+      "deactivated": true,
+      "sig": {
+        "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+        "value": "j8_JDruwWx8RcuuNi1Vv0ZqBnasNE-CQe2pkQL5ZjWwaOu31tZFwduL2nbHVk-8gSYVWiZNIyVzClFxtQuKvBw"
+      }
+    },
+    {
+      "v": 0,
+      "account": "yhndxggbfkwpaq2l3b3i46mf",
+      "seq": 2,
+      "prev": "sha256:8cf23d338c3ee3361563782d4b7c84c62dac3d4b171e52e4d1e58ac01a5c4018",
+      "rotationKeys": [
+        "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+      ],
+      "signingKeys": {
+        "main": {
+          "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+        }
+      },
+      "revokedKeys": [],
+      "handles": [
+        "ada.host.example"
+      ],
+      "hosts": [
+        "https://host.example"
+      ],
+      "created": "2026-10-17T09:02:00.000Z",
+      "deactivated": true,
+      "sig": {
+        "key": "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y",
+        "value": "1jtWIybGMqmd9sXHktWY1ls1y3S6E0HNBFbAtfrbdHlswS8D0Ib8wCveB_QA2RZz-OczSKSF67JEeA5ZR-CbCA"
+      }
+    }
+  ],
+  "expect": {
+    "valid": false,
+    "reason": "deactivated"
+  }
+}

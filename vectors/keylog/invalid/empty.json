@@ -1,0 +1,8 @@
+{
+  "description": "A key log has at least one entry.",
+  "input": [],
+  "expect": {
+    "valid": false,
+    "reason": "bad_shape"
+  }
+}

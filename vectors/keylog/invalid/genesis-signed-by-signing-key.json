@@ -1,0 +1,35 @@
+{
+  "description": "Only a rotation key may sign a key log entry.",
+  "input": [
+    {
+      "v": 0,
+      "account": null,
+      "seq": 0,
+      "prev": null,
+      "rotationKeys": [
+        "z6MktnLTnWKcmBo8cmV2JYv5b4QkgmijkSVJTyNMLYScsL6Y"
+      ],
+      "signingKeys": {
+        "main": {
+          "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky"
+        }
+      },
+      "revokedKeys": [],
+      "handles": [
+        "ada.host.example"
+      ],
+      "hosts": [
+        "https://host.example"
+      ],
+      "created": "2026-10-17T09:00:00.000Z",
+      "sig": {
+        "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+        "value": "o5ErUzpXBkzlqXKX_zsQqlWe_51c0wevKp9fDJFJZdsm6Yy8-UIXhxGZQ9Vv3U6usWJI8lN7_ytEEZFwF3BPAQ"
+      }
+    }
+  ],
+  "expect": {
+    "valid": false,
+    "reason": "unknown_key"
+  }
+}
