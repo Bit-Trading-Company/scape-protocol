@@ -24,8 +24,11 @@ Needs Node 24 and pnpm 10.
 
 ## Status
 
-v0, approved 2026-10-17. Implemented here: key logs, records, the repository log and checkpoints, sign-in proofs, file refs and scape bundles, plus live host checks (`pnpm conformance --host URL --account ID`) for the descriptor, key logs, handles and errors. Checks for the record, log and checkpoint endpoints are written as hosts start serving them; until then they report as pending.
+v0 (draft 2), approved 2026-10-17; its [changes](spec/v0.md#changes) since draft 1 are listed in the spec. Implemented here: key logs, records, the repository log and checkpoints, sign-in proofs, file refs and scape bundles, plus live host checks (`pnpm conformance --host URL --account ID`) for the descriptor, key logs, handles and errors. Checks for the record, log and checkpoint endpoints are written as hosts start serving them; until then they report as pending.
 
 ## License
 
-Not chosen yet.
+Copyright 2026 Bit Trading Company and the MEME contributors.
+
+- **The specification** ([`spec/`](spec/)) is licensed under [Creative Commons Attribution 4.0](spec/LICENSE) (CC-BY-4.0). Anyone may copy, adapt and build on it, with attribution.
+- **Everything else** (the reference library, JSON Schemas, test vectors and conformance suite) is licensed under the [Apache License 2.0](LICENSE), which includes a patent grant, so any implementation can use it freely.
