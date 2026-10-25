@@ -1,7 +1,7 @@
 import { cidOf, HASH_REF, isObject, isTime, jcs, withoutSig } from './encoding.ts';
 import { check, verdict, type Verdict } from './errors.ts';
-import { signBytes, verifyBytes } from './keys.ts';
-import { signingKeyFor, type Keylog, type Sig } from './keylog.ts';
+import { verifyBytes, type KeyPair } from './keys.ts';
+import { checkSig, sign, signingKeyFor, type Keylog, type Sig } from './keylog.ts';
 import { checkManifest } from './scape.ts';
 import { bodyProblem } from './schemas.ts';
 
@@ -15,7 +15,6 @@ export interface MemeRecord {
   license?: string;
   body: Record<string, unknown> | null;
   deleted?: true;
-  keylogSeq: number;
   sig: Sig;
 }
 
@@ -26,7 +25,8 @@ export const CORE_TYPE = /^[a-z][a-z0-9]*$/;
 const DOMAIN_LABEL = '[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?';
 /** An extension type: reverse-DNS with at least three segments. */
 export const EXTENSION_TYPE = new RegExp(`^(?=.{1,253}$)${DOMAIN_LABEL}(?:\\.${DOMAIN_LABEL}){2,}$`);
-export const RKEY = /^[a-z0-9][a-z0-9-]{0,63}$/;
+/** `self` for singletons, otherwise a TID the host generates: never user-chosen text (spec: Records). */
+export const RKEY = /^(?:self|[2-7a-z]{13})$/;
 const SPDX_ID = /^[A-Za-z0-9][A-Za-z0-9.+-]{0,127}$/;
 export const MAX_BODY_BYTES = 64 * 1024;
 
@@ -44,8 +44,8 @@ function isLicense(value: unknown): boolean {
   }
 }
 
-export function signRecord(record: UnsignedRecord, keyName: string, secretKey: Uint8Array): MemeRecord {
-  return { ...record, sig: { key: keyName, value: signBytes(jcs(record), secretKey) } };
+export function signRecord(record: UnsignedRecord, signingKey: KeyPair, keylogSeq: number): MemeRecord {
+  return sign(record, signingKey, keylogSeq);
 }
 
 function checkRecordShape(record: unknown): asserts record is MemeRecord {
@@ -70,11 +70,7 @@ function checkRecordShape(record: unknown): asserts record is MemeRecord {
   } else {
     check(record.deleted === true && record.body === null, 'bad_shape', 'a tombstone has deleted: true and body: null');
   }
-  check(
-    isObject(record.sig) && typeof record.sig.key === 'string' && typeof record.sig.value === 'string',
-    'bad_shape',
-    'sig must be { key, value }',
-  );
+  checkSig(record.sig);
 }
 
 function verifyRecordOrThrow(record: unknown, keylog: Keylog): { record: MemeRecord; cid: string } {
@@ -82,7 +78,7 @@ function verifyRecordOrThrow(record: unknown, keylog: Keylog): { record: MemeRec
   check(record.account === keylog.account, 'bad_account', 'record belongs to another account');
   check(jcs(record.body).length <= MAX_BODY_BYTES, 'too_large', 'body is larger than 64 KiB');
   const message = jcs(withoutSig(record));
-  const key = signingKeyFor(keylog, record.keylogSeq, record.sig.key, { record: record.type });
+  const key = signingKeyFor(keylog, record.sig, { record: record.type });
   check(verifyBytes(record.sig.value, message, key), 'bad_signature', 'signature does not verify');
   if (record.body !== null) {
     const problem = bodyProblem(record.type, record.body);

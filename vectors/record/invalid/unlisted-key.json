@@ -1,5 +1,5 @@
 {
-  "description": "sig.key must name a signing key in the entry at keylogSeq.",
+  "description": "sig.key must be a signing key listed in the entry at sig.keylogSeq.",
   "context": {
     "keylog": [
       {
@@ -41,10 +41,10 @@
     "body": {
       "displayName": "Ada"
     },
-    "keylogSeq": 0,
     "sig": {
-      "key": "other",
-      "value": "SVqDBblEVQFVGF1z3B0V-e0-kDqd4YruriPO7zPYAFPvACgRwc8MR4CqGp8y5zwcIll3xSz1x2v0iJcrYv93Ag"
+      "key": "z6MkpvUpArbjyw7gfwdgeRWBzgeP4B5UU7Uv1tqypQEZKb3J",
+      "keylogSeq": 0,
+      "value": "awHn_zih8ZnRgg7Qa1g5LPhbHEv2JA6xqnCCSWjzWTFCcy_xUcLffECrlFHr191BWli-WQ9f58CZoHZ6qeiQBA"
     }
   },
   "expect": {

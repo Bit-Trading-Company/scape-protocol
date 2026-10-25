@@ -41,14 +41,14 @@
     "body": {
       "displayName": "Ada"
     },
-    "keylogSeq": 0,
     "sig": {
-      "key": "main",
-      "value": "SVqDBblEVQFVGF1z3B0V-e0-kDqd4YruriPO7zPYAFPvACgRwc8MR4CqGp8y5zwcIll3xSz1x2v0iJcrYv93Ag"
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 0,
+      "value": "_htNPtlG4ErLoDKPxE9UCRtylMaTfBZaYN2YEbjtLyiIjjV6iWmqBSyDBvLYnpEnbuCI3MsxlAGmp4kL6bmlDA"
     }
   },
   "expect": {
     "valid": true,
-    "cid": "sha256:642c15c7619ccd8faaa38f1bd36b0948e7655b07f2beb8756e1cc55ac0d5d430"
+    "cid": "sha256:e5ed4ce2818a5a0db75a0111f1298ff6eb174782d323cea8c17715cfa588f1df"
   }
 }

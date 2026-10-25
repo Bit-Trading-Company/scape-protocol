@@ -1,7 +1,7 @@
 import { fullHash, HASH_REF, isObject, isTime, jcs, withoutSig } from './encoding.ts';
 import { check, verdict, type Verdict } from './errors.ts';
-import { signBytes, verifyBytes } from './keys.ts';
-import { signingKeyFor, type Keylog, type Sig } from './keylog.ts';
+import { verifyBytes, type KeyPair } from './keys.ts';
+import { checkSig, sign, signingKeyFor, type Keylog, type Sig } from './keylog.ts';
 import { isRecordType, RKEY } from './record.ts';
 
 export interface LogEntry {
@@ -20,7 +20,6 @@ export interface Checkpoint {
   seq: number;
   head: string;
   created: string;
-  keylogSeq: number;
   sig: Sig;
 }
 
@@ -47,8 +46,8 @@ export function nextLogEntry(
   };
 }
 
-export function signCheckpoint(checkpoint: UnsignedCheckpoint, keyName: string, secretKey: Uint8Array): Checkpoint {
-  return { ...checkpoint, sig: { key: keyName, value: signBytes(jcs(checkpoint), secretKey) } };
+export function signCheckpoint(checkpoint: UnsignedCheckpoint, signingKey: KeyPair, keylogSeq: number): Checkpoint {
+  return sign(checkpoint, signingKey, keylogSeq);
 }
 
 function checkEntryShape(entry: unknown): asserts entry is LogEntry {
@@ -80,15 +79,11 @@ function verifyCheckpointOrThrow(checkpoint: unknown, keylog: Keylog): Checkpoin
   );
   check(typeof checkpoint.head === 'string' && HASH_REF.test(checkpoint.head), 'bad_shape', 'head must be a hash');
   check(isTime(checkpoint.created), 'bad_shape', 'created must be an RFC 3339 UTC time with milliseconds');
-  check(
-    isObject(checkpoint.sig) && typeof checkpoint.sig.key === 'string' && typeof checkpoint.sig.value === 'string',
-    'bad_shape',
-    'sig must be { key, value }',
-  );
+  checkSig(checkpoint.sig);
   check(checkpoint.account === keylog.account, 'bad_account', 'checkpoint belongs to another account');
   const signed = checkpoint as unknown as Checkpoint;
   const message = jcs(withoutSig(signed));
-  const key = signingKeyFor(keylog, signed.keylogSeq, signed.sig.key, 'checkpoint');
+  const key = signingKeyFor(keylog, signed.sig, 'checkpoint');
   check(verifyBytes(signed.sig.value, message, key), 'bad_signature', 'signature does not verify');
   return signed;
 }

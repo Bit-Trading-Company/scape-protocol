@@ -1,13 +1,26 @@
 /**
- * pnpm conformance            runs every vector against the reference library
- * pnpm conformance --host URL checks a live host (arrives with the M0 host)
+ * pnpm conformance                                  every vector against the reference library
+ * pnpm conformance --host URL --account ID [--handle H]   a live host
  */
+import { parseArgs } from 'node:util';
+import { checkHost } from './host.ts';
 import { readVectors, runVector } from './vectors.ts';
 
-const args = process.argv.slice(2);
-if (args.includes('--host')) {
-  console.error('Host checks are not built yet. They arrive with the first host endpoints (M0 vertical slice).');
-  process.exit(2);
+const { values } = parseArgs({
+  options: { host: { type: 'string' }, account: { type: 'string' }, handle: { type: 'string' } },
+});
+
+if (values.host !== undefined) {
+  if (values.account === undefined) {
+    console.error('--host needs --account <id> of an account the host serves');
+    process.exit(2);
+  }
+  const results = await checkHost({ base: values.host, account: values.account, handle: values.handle });
+  for (const { name, status, detail } of results) console.log(`${status.padEnd(7)} ${name}  ${detail}`);
+  const failed = results.filter((r) => r.status === 'fail').length;
+  const pending = results.filter((r) => r.status === 'pending').length;
+  console.log(`\n${results.length - failed - pending} passed, ${failed} failed, ${pending} pending`);
+  process.exit(failed === 0 ? 0 : 1);
 }
 
 let failed = 0;

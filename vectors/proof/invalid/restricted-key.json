@@ -75,10 +75,10 @@
     "nonce": "cBIrNtOpMrrI2FA3Kg1l4vqJ_vkdfDFJohGosZn-33g",
     "issued": "2026-10-17T09:30:00.000Z",
     "expires": "2026-10-17T09:35:00.000Z",
-    "keylogSeq": 1,
     "sig": {
-      "key": "phone",
-      "value": "OEmrp10b4GBib-5QH1Rbqg-BkLc-PoxNkfuovqqeWAyBU-I88xLVVSi7C4gxbC6llenYrNRmjtlIPFjuAP6_Bg"
+      "key": "z6MknmhvSosweyXmhaPXe94MKef77MH3nniBNkSg4nkcs9CP",
+      "keylogSeq": 1,
+      "value": "_Ejfvhg3y2jWqhgOEv95e0xa8XovKwnN-8KbAM8trlH-4gzaLfahYGzhN7085UP17xY12mxICVZADg2vNgp8Cg"
     }
   },
   "expect": {

@@ -81,14 +81,14 @@
       },
       "name": "photo.jpg"
     },
-    "keylogSeq": 1,
     "sig": {
-      "key": "phone",
-      "value": "-TpwBLjzWRQ85fecbywfaijzPBPX68U53_Le5XF-bQmHRYDXNSuiFWufXXterPUM7I8WGyIsXfnXun3aSqGUDw"
+      "key": "z6MknmhvSosweyXmhaPXe94MKef77MH3nniBNkSg4nkcs9CP",
+      "keylogSeq": 1,
+      "value": "3hUeXIeY9XxkRYPDmL-MiPya3dTaM7es34LyTEQMjaij6kzpo8F0qaxKRi_ro-5qoT3vXEGBeNPaFzbYSUzyDA"
     }
   },
   "expect": {
     "valid": true,
-    "cid": "sha256:8ff31ba95f83ae98a5bfad811a54ccdd0c1dfc1ea1e1c068ded8477c14cf82de"
+    "cid": "sha256:d599323f48577cad59453137878c766e37cff1d1d5f133839ebcb7fc43273b8a"
   }
 }

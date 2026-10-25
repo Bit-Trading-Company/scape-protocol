@@ -1,5 +1,5 @@
 {
-  "description": "keylogSeq must name an existing entry.",
+  "description": "sig.keylogSeq must name an existing entry.",
   "context": {
     "keylog": [
       {
@@ -41,10 +41,10 @@
     "body": {
       "displayName": "Ada"
     },
-    "keylogSeq": 5,
     "sig": {
-      "key": "main",
-      "value": "R_U_yQP07hqMCKmzHFhUsVm9JyMZbxQQ92e00Og8vxhFWigXBLEHQfb6GcRvmtovCEvflaWc8hgfhI5X5qIEDQ"
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 5,
+      "value": "_htNPtlG4ErLoDKPxE9UCRtylMaTfBZaYN2YEbjtLyiIjjV6iWmqBSyDBvLYnpEnbuCI3MsxlAGmp4kL6bmlDA"
     }
   },
   "expect": {

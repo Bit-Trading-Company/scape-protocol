@@ -76,10 +76,10 @@
     "body": {
       "text": "hi"
     },
-    "keylogSeq": 1,
     "sig": {
-      "key": "phone",
-      "value": "N9YweZE3-4uG1JKRQ6mSnaOm3xXoL35s8FzDkCqUw5nxnCs1LzEiyZzvEF2Gt859K2kMF1mLYBGAtMN1UsmiDA"
+      "key": "z6MknmhvSosweyXmhaPXe94MKef77MH3nniBNkSg4nkcs9CP",
+      "keylogSeq": 1,
+      "value": "IOvUPsXqIx9HueU8xOvMqNs18KjtLwy0-_zVb0NAmhgc0PBfJgcffaf2t0zm3WqKUH17J6uwb0VAeSTC22-vCA"
     }
   },
   "expect": {

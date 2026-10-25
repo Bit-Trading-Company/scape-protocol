@@ -1,5 +1,5 @@
 {
-  "description": "A scape bundle manifest.",
+  "description": "A scape bundle manifest. Its slug lives in the body, so renaming it is a new revision.",
   "context": {
     "keylog": [
       {
@@ -34,7 +34,7 @@
     "v": 0,
     "account": "yhndxggbfkwpaq2l3b3i46mf",
     "type": "scape",
-    "rkey": "links",
+    "rkey": "3l2kq7xxa2c2v",
     "prev": null,
     "created": "2026-10-17T09:10:00.000Z",
     "license": "LicenseRef-scape-1.0",
@@ -68,16 +68,17 @@
           "account.get"
         ]
       },
-      "generator": "meme-vectors"
+      "generator": "meme-vectors",
+      "slug": "links"
     },
-    "keylogSeq": 0,
     "sig": {
-      "key": "main",
-      "value": "Arpr0htvffxMX_Ha7Zj1gjYSK_BHh2mYwZJ04F_3bIfvyvcxrGNwG9VjGLxZaO_bmP4oBUmGNFCLkKts0wBJDQ"
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 0,
+      "value": "2tdTV_UipNCmfMSNHAVY2CXbJfTnfhkxejf6db6_ckQB66LlOKarVQktsTB-l7YucvyMG5YrGSo-XDHD2djLCA"
     }
   },
   "expect": {
     "valid": true,
-    "cid": "sha256:4e8a7fc398e424527890bdecf11e25dc21477862c5794e3b76440ec0fa7683e7"
+    "cid": "sha256:3ec8ddc68654dda846138cdcfce2e9df90d664f29d61f6c08299089fcd772fe9"
   }
 }

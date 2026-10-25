@@ -41,10 +41,10 @@
     "body": {
       "displayName": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     },
-    "keylogSeq": 0,
     "sig": {
-      "key": "main",
-      "value": "L0RgcJABQ35qKn_u6MqFq0bDkjRYcISrgfsvcaA3dFtEV4bya_KWkybbhglcL6NJnSQfzqF5AvdBB3R6jjawBg"
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 0,
+      "value": "RQpmkf9ArvxMUNjn_zhQDa0AL5Av58kkglBS6PO4385G5w-hANRo4lq4785uQcL86OLyHmW9TWUAY9sRBZ2_Bg"
     }
   },
   "expect": {

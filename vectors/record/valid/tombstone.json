@@ -35,19 +35,19 @@
     "account": "yhndxggbfkwpaq2l3b3i46mf",
     "type": "profile",
     "rkey": "self",
-    "prev": "sha256:642c15c7619ccd8faaa38f1bd36b0948e7655b07f2beb8756e1cc55ac0d5d430",
+    "prev": "sha256:e5ed4ce2818a5a0db75a0111f1298ff6eb174782d323cea8c17715cfa588f1df",
     "created": "2026-10-17T09:12:00.000Z",
     "license": "LicenseRef-scape-1.0",
     "body": null,
-    "keylogSeq": 0,
     "deleted": true,
     "sig": {
-      "key": "main",
-      "value": "Li9WVezmy0z6L74-eDOJD55d2VFY0vwJdnZ3vO-xZcIqtUVDRIgX58eYmux0GUZBctPsqJP9wBejKpiFdivXAg"
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 0,
+      "value": "1Nv_ETp7LTuhjGShXVh9GfIGnN6u5Dudqu7AY-bi0WQ2hwxjhHbFnAKGxqrMGmpDm6-OXJw2c0xvhM7qGnV3CQ"
     }
   },
   "expect": {
     "valid": true,
-    "cid": "sha256:e2c5372842c6ab412c3040c0b5e060a0e1d06143b0e91252478b91361f010a13"
+    "cid": "sha256:5d4aa89160c5cb421193b33f6ce3e686fa50f3061752c694009afb18540938b2"
   }
 }

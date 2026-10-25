@@ -35,20 +35,20 @@
     "account": "yhndxggbfkwpaq2l3b3i46mf",
     "type": "profile",
     "rkey": "self",
-    "prev": "sha256:642c15c7619ccd8faaa38f1bd36b0948e7655b07f2beb8756e1cc55ac0d5d430",
+    "prev": "sha256:e5ed4ce2818a5a0db75a0111f1298ff6eb174782d323cea8c17715cfa588f1df",
     "created": "2026-10-17T09:11:00.000Z",
     "license": "LicenseRef-scape-1.0",
     "body": {
       "displayName": "Ada L."
     },
-    "keylogSeq": 0,
     "sig": {
-      "key": "main",
-      "value": "wuPzpeqTzI89ite4phRDqssxGosfLbFWqP17UkUrcl5w7rSsQXvAKOo-YC3q_oXwubRoYCpo60XP2nIJHS-lCw"
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 0,
+      "value": "QAAisRWoW1MCusDeE-tl-rAsPSz4XvUVaCE46M7goBHWbE3LXMc9U9Gj2n6-d4SL9FksijOFEPX8Gw23j-QoCQ"
     }
   },
   "expect": {
     "valid": true,
-    "cid": "sha256:32a7d789cb118b60acf1231f7dbfcbe71cf70b1cb46a1f6cafe74b7a76ffda20"
+    "cid": "sha256:9d81b51f3832c8982e8d4d7bdfd3148d83a447f25609fdc20accf87a755487f4"
   }
 }

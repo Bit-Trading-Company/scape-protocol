@@ -34,7 +34,7 @@
     "v": 0,
     "account": "yhndxggbfkwpaq2l3b3i46mf",
     "type": "scape",
-    "rkey": "links",
+    "rkey": "3l2kq7xxa2c2v",
     "prev": null,
     "created": "2026-10-17T09:10:00.000Z",
     "license": "LicenseRef-scape-1.0",
@@ -75,10 +75,10 @@
       },
       "generator": "meme-vectors"
     },
-    "keylogSeq": 0,
     "sig": {
-      "key": "main",
-      "value": "188duxKXrT-jse_OjNd3FQeS3sDU9esdAB2HH0w8JUclDn5wJcxn9HZgi5BZlHQCnGvh5hbfU-dIHXQiOm5NCw"
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 0,
+      "value": "DCLVdJxlhc36O2U5iDZGjbYNomtBWH5_qGfnB6e-pSX1xioOegNFOq5GMRdx8pdvg06DBq9mo8LOubjbD2p5DA"
     }
   },
   "expect": {

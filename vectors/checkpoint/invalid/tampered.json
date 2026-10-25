@@ -36,10 +36,10 @@
     "seq": 3,
     "head": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
     "created": "2026-10-17T09:23:00.000Z",
-    "keylogSeq": 0,
     "sig": {
-      "key": "main",
-      "value": "-6KNgZf5Dsz9kMfIJ5Z2s_6Hb8dRDHsjIwp5ExbbusaKJf32LFok1FWCRLF2KGtG0DxtPHPePLL3kIwMjhDiCQ"
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 0,
+      "value": "gJvjxu5qNa8mRk-pcXXaSuZEp-Q6NTOk9bhSNOZuluauFRPtpx1baEeu48b6HMN7sSHK92MauC3elrgIRMt6Bg"
     }
   },
   "expect": {

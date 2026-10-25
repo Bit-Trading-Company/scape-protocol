@@ -1,7 +1,7 @@
 import { base64url, isObject, isTime, jcs, withoutSig } from './encoding.ts';
 import { check, verdict, type Verdict } from './errors.ts';
-import { signBytes, verifyBytes } from './keys.ts';
-import { signingKeyFor, type Keylog, type Sig } from './keylog.ts';
+import { verifyBytes, type KeyPair } from './keys.ts';
+import { checkSig, sign, signingKeyFor, type Keylog, type Sig } from './keylog.ts';
 
 export interface Proof {
   v: 0;
@@ -10,7 +10,6 @@ export interface Proof {
   nonce: string;
   issued: string;
   expires: string;
-  keylogSeq: number;
   sig: Sig;
 }
 
@@ -19,8 +18,8 @@ export type UnsignedProof = Omit<Proof, 'sig'>;
 export const MAX_PROOF_WINDOW_MS = 5 * 60 * 1000;
 export const MIN_NONCE_BYTES = 16;
 
-export function signProof(proof: UnsignedProof, keyName: string, secretKey: Uint8Array): Proof {
-  return { ...proof, sig: { key: keyName, value: signBytes(jcs(proof), secretKey) } };
+export function signProof(proof: UnsignedProof, signingKey: KeyPair, keylogSeq: number): Proof {
+  return sign(proof, signingKey, keylogSeq);
 }
 
 function nonceBytes(nonce: string): number {
@@ -54,11 +53,7 @@ export function verifyProof(
       'bad_shape',
       'issued and expires must be RFC 3339 UTC times with milliseconds',
     );
-    check(
-      isObject(proof.sig) && typeof proof.sig.key === 'string' && typeof proof.sig.value === 'string',
-      'bad_shape',
-      'sig must be { key, value }',
-    );
+    checkSig(proof.sig);
     const signed = proof as unknown as Proof;
     check(signed.account === keylog.account, 'bad_account', 'proof is for another account');
     check(signed.audience === expected.audience, 'bad_audience', 'proof is for another audience');
@@ -69,7 +64,7 @@ export function verifyProof(
     check(expires - issued <= MAX_PROOF_WINDOW_MS, 'window_too_long', 'a proof is valid for at most 5 minutes');
     check(issued <= now && now <= expires, 'expired', 'proof is not valid at this time');
     const message = jcs(withoutSig(signed));
-    const key = signingKeyFor(keylog, signed.keylogSeq, signed.sig.key, 'proof');
+    const key = signingKeyFor(keylog, signed.sig, 'proof');
     check(verifyBytes(signed.sig.value, message, key), 'bad_signature', 'signature does not verify');
     return signed;
   });

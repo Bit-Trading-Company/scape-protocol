@@ -76,10 +76,10 @@
     "body": {
       "displayName": "Ada"
     },
-    "keylogSeq": 1,
     "sig": {
-      "key": "phone",
-      "value": "pVbIZ3ZkVBEoPw-AhiPQZvsDz8N-4b6IgOPup4dLfJTe6zUubYlH94hd-qap7Q8poKVeAhTx984DMa6aPTyiDw"
+      "key": "z6MknmhvSosweyXmhaPXe94MKef77MH3nniBNkSg4nkcs9CP",
+      "keylogSeq": 1,
+      "value": "k91DXKjMUi8e1uVyIo4pkHJTkF6vmUUsxDZxiutb-9BAWOwHWzmASElOsb5wH_vaEbtEzo0e8ASSn3HVovffBQ"
     }
   },
   "expect": {

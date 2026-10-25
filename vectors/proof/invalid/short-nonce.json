@@ -40,10 +40,10 @@
     "nonce": "OCBieXRlcyE",
     "issued": "2026-10-17T09:30:00.000Z",
     "expires": "2026-10-17T09:35:00.000Z",
-    "keylogSeq": 0,
     "sig": {
-      "key": "main",
-      "value": "Lk9HLjuo-t-2ppgxNbduOzCvpTCAkB841I18LmWJVP1LczJ0MYrPWJ5YSqenAxFExZKghmNFoJyi1oQ_4vuyCg"
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 0,
+      "value": "Ri-NzISFOmCI4OQHEaD2VusZ_8SwV2Kh237BjBeF7PQewzGs6WrxykR5ocXrTY0EgUhaCecqgwwMZfaA5X9JDA"
     }
   },
   "expect": {

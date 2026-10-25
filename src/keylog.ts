@@ -2,9 +2,23 @@ import { base32lower, fullHash, HASH_REF, isObject, isTime, jcs, sha256Bytes, wi
 import { check, verdict, type Verdict } from './errors.ts';
 import { isMultikey, signBytes, verifyBytes, type KeyPair } from './keys.ts';
 
-export interface Sig {
-  /** A Multikey (key log entries) or a signing key's name (everything else). */
+/** A key log entry's signature, by a rotation key. */
+export interface EntrySig {
+  /** The rotation key, as a Multikey. */
   key: string;
+  value: string;
+}
+
+/**
+ * The signature on every other signed object. It sits outside the object's
+ * CID, so an object can be re-signed (after a key is revoked, say) without
+ * changing its CID.
+ */
+export interface Sig {
+  /** The signing key itself, as a Multikey. */
+  key: string;
+  /** The key log entry that lists the key. */
+  keylogSeq: number;
   value: string;
 }
 
@@ -30,7 +44,7 @@ export interface KeylogEntry {
   hosts: string[];
   created: string;
   deactivated?: true;
-  sig: Sig;
+  sig: EntrySig;
 }
 
 export type UnsignedKeylogEntry = Omit<KeylogEntry, 'sig'>;
@@ -50,8 +64,11 @@ export const ACCOUNT_ID = /^[a-z2-7]{24}$/;
 export const KEY_NAME = /^[a-z0-9-]{1,32}$/;
 const LABEL = '[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?';
 export const HANDLE = new RegExp(`^(?=.{1,253}$)${LABEL}(?:\\.${LABEL})+$`);
-/** A Scape handle's first label (spec: Handles). */
-export const SCAPE_HANDLE_LABEL = /^[a-z0-9](?:[a-z0-9-]{1,28}[a-z0-9])$/;
+/**
+ * A Scape handle's first label (spec: Handles): 3–30 characters, and never `--`
+ * in the third and fourth places, which DNS reserves for encodings like `xn--`.
+ */
+export const SCAPE_HANDLE_LABEL = /^(?!.{2}--)[a-z0-9][a-z0-9-]{1,28}[a-z0-9]$/;
 
 export function isHostUrl(value: unknown): boolean {
   if (typeof value !== 'string') return false;
@@ -75,12 +92,33 @@ export function signKeylogEntry(entry: UnsignedKeylogEntry, rotationKey: KeyPair
   return { ...entry, sig: { key: rotationKey.multikey, value: signBytes(jcs(entry), rotationKey.secretKey) } };
 }
 
-function checkSig(value: unknown): asserts value is Sig {
+function checkEntrySig(value: unknown): asserts value is EntrySig {
   check(
     isObject(value) && typeof value.key === 'string' && typeof value.value === 'string',
     'bad_shape',
     'sig must be { key, value }',
   );
+}
+
+/** The shape of a record's, checkpoint's or proof's `sig`. */
+export function checkSig(value: unknown): asserts value is Sig {
+  check(
+    isObject(value) &&
+      isMultikey(value.key) &&
+      Number.isSafeInteger(value.keylogSeq) &&
+      (value.keylogSeq as number) >= 0 &&
+      typeof value.value === 'string',
+    'bad_shape',
+    'sig must be { key: a Multikey, keylogSeq: an integer ≥ 0, value }',
+  );
+}
+
+/** Signs `object`, which must not carry a `sig`, with a signing key listed at `keylogSeq`. */
+export function sign<T extends object>(object: T, signingKey: KeyPair, keylogSeq: number): T & { sig: Sig } {
+  return {
+    ...object,
+    sig: { key: signingKey.multikey, keylogSeq, value: signBytes(jcs(object), signingKey.secretKey) },
+  };
 }
 
 function checkStrings(value: unknown, min: number, max: number, test: (item: unknown) => boolean, name: string): void {
@@ -116,6 +154,8 @@ function checkEntryShape(entry: unknown): asserts entry is KeylogEntry {
       `restrict of "${name}" must be an object`,
     );
   }
+  const publicKeys = names.map((name) => (entry.signingKeys as Record<string, SigningKey>)[name]?.key);
+  check(new Set(publicKeys).size === publicKeys.length, 'bad_shape', 'a signing key appears under two names');
   checkStrings(entry.revokedKeys, 0, 64, isMultikey, 'revokedKeys');
   checkStrings(entry.handles, 0, 4, (h) => typeof h === 'string' && HANDLE.test(h), 'handles');
   checkStrings(entry.hosts, 1, 4, isHostUrl, 'hosts');
@@ -125,7 +165,7 @@ function checkEntryShape(entry: unknown): asserts entry is KeylogEntry {
     'bad_shape',
     'deactivated must be true if present',
   );
-  checkSig(entry.sig);
+  checkEntrySig(entry.sig);
 }
 
 function verifyKeylogOrThrow(entries: unknown): Keylog {
@@ -166,39 +206,37 @@ export function verifyKeylog(entries: unknown): Verdict<Keylog> {
   return verdict(() => verifyKeylogOrThrow(entries));
 }
 
+const listing = (entry: KeylogEntry, key: string): SigningKey | undefined =>
+  Object.values(entry.signingKeys).find((signingKey) => signingKey.key === key);
+
 /**
- * The Multikey a signature must verify against: the key named `name` in the
- * entry at `keylogSeq`, checked against revocation and its restrictions.
+ * Checks that `sig.key` may sign for `purpose` and returns it (spec: Records):
+ * the entry at `sig.keylogSeq` lists it, the latest entry has not revoked it,
+ * and the restrictions of the latest entry that lists it allow the purpose.
  */
-export function signingKeyFor(log: Keylog, keylogSeq: unknown, name: unknown, purpose: Purpose): string {
-  check(Number.isSafeInteger(keylogSeq) && (keylogSeq as number) >= 0, 'bad_shape', 'keylogSeq must be an integer ≥ 0');
-  const entry = log.entries[keylogSeq as number];
-  check(entry !== undefined, 'unknown_key', `the key log has no entry ${String(keylogSeq)}`);
-  check(
-    typeof name === 'string' && Object.hasOwn(entry.signingKeys, name),
-    'unknown_key',
-    `entry ${entry.seq} has no signing key "${String(name)}"`,
-  );
-  const signingKey = entry.signingKeys[name];
-  check(signingKey !== undefined, 'unknown_key', `entry ${entry.seq} has no signing key "${name}"`);
-  check(!log.head.revokedKeys.includes(signingKey.key), 'revoked_key', `signing key "${name}" has been revoked`);
-  const restrict = signingKey.restrict;
+export function signingKeyFor(log: Keylog, sig: Sig, purpose: Purpose): string {
+  const entry = log.entries[sig.keylogSeq];
+  check(entry !== undefined, 'unknown_key', `the key log has no entry ${sig.keylogSeq}`);
+  check(listing(entry, sig.key) !== undefined, 'unknown_key', `entry ${entry.seq} does not list the signing key`);
+  check(!log.head.revokedKeys.includes(sig.key), 'revoked_key', 'the signing key has been revoked');
+  const latest = log.entries.findLast((candidate) => listing(candidate, sig.key) !== undefined) ?? entry;
+  const restrict = listing(latest, sig.key)?.restrict;
   if (restrict !== undefined) {
     const unknown = Object.keys(restrict).filter((field) => field !== 'types');
     check(
       unknown.length === 0,
       'unknown_restriction',
-      `signing key "${name}" has unknown restrictions: ${unknown.join(', ')}`,
+      `the signing key has unknown restrictions: ${unknown.join(', ')}`,
     );
-    check(typeof purpose === 'object', 'key_restricted', `restricted key "${name}" cannot sign a ${String(purpose)}`);
+    check(typeof purpose === 'object', 'key_restricted', `a restricted key cannot sign a ${String(purpose)}`);
     if (restrict.types !== undefined) {
-      check(Array.isArray(restrict.types), 'unknown_restriction', `restrict.types of "${name}" is not a list`);
+      check(Array.isArray(restrict.types), 'unknown_restriction', 'restrict.types is not a list');
       check(
         restrict.types.includes(purpose.record),
         'key_restricted',
-        `signing key "${name}" may not sign ${purpose.record} records`,
+        `the signing key may not sign ${purpose.record} records`,
       );
     }
   }
-  return signingKey.key;
+  return sig.key;
 }

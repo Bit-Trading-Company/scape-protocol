@@ -41,10 +41,10 @@
     "body": {
       "displayName": "Eve"
     },
-    "keylogSeq": 0,
     "sig": {
-      "key": "main",
-      "value": "SVqDBblEVQFVGF1z3B0V-e0-kDqd4YruriPO7zPYAFPvACgRwc8MR4CqGp8y5zwcIll3xSz1x2v0iJcrYv93Ag"
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 0,
+      "value": "_htNPtlG4ErLoDKPxE9UCRtylMaTfBZaYN2YEbjtLyiIjjV6iWmqBSyDBvLYnpEnbuCI3MsxlAGmp4kL6bmlDA"
     }
   },
   "expect": {

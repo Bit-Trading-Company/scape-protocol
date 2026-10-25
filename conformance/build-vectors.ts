@@ -97,6 +97,8 @@ const logs = {
   rotated: [g, next(g, { signingKeys: { main: { key: K.signing2.multikey } } })],
   revoked: [g, next(g, { signingKeys: { main2: { key: K.signing2.multikey } }, revokedKeys: [K.signing.multikey] })],
   withPhone: [g, next(g, { signingKeys: { main, phone: phone({ types: ['post', 'file'] }) } })],
+  /** The same main key, restricted after the fact. */
+  tightened: [g, next(g, { signingKeys: { main: { key: K.signing.multikey, restrict: { types: ['file'] } } } })],
   unknownRestriction: [g, next(g, { signingKeys: { main, phone: phone({ types: ['post'], expires: at(60) }) } })],
 };
 
@@ -107,7 +109,8 @@ const tamper = <T extends object>(signed: T, changes: Record<string, unknown>): 
 
 function record(
   overrides: Partial<UnsignedRecord> & Record<string, unknown> = {},
-  signer: { name: string; key: KeyPair } = { name: 'main', key: K.signing },
+  signer: KeyPair = K.signing,
+  keylogSeq = 0,
 ): MemeRecord {
   const fields = {
     v: 0,
@@ -118,14 +121,13 @@ function record(
     created: at(10),
     license: 'LicenseRef-scape-1.0',
     body: { displayName: 'Ada' },
-    keylogSeq: 0,
     ...overrides,
   };
   // An override of `undefined` removes the field.
   const unsigned = Object.fromEntries(
     Object.entries(fields).filter(([, value]) => value !== undefined),
   ) as UnsignedRecord;
-  return signRecord(unsigned, signer.name, signer.key.secretKey);
+  return signRecord(unsigned, signer, keylogSeq);
 }
 
 const bytesOf = (text: string) => utf8(text);
@@ -149,14 +151,20 @@ const withFiles = (files: Record<string, unknown>, entry = 'index.html') => ({ .
 const profile = record();
 const profileCid = cidOf(profile);
 
+/** The profile re-signed by the replacement key after the old one was revoked. */
+const resigned = record({}, K.signing2, 1);
+if (cidOf(resigned) !== profileCid) throw new Error('re-signing must not change a CID');
+
+const SCAPE_RKEY = '3l2kq7xxa2c2v';
+
 // Repository log
 
 const fileRecord = record({ type: 'file', rkey: '3l2kq7xxa2c2s', body: { blob: photo, name: 'photo.jpg' } });
 const e1 = nextLogEntry(null, { op: 'put', type: 'profile', rkey: 'self', cid: profileCid });
 const e2 = nextLogEntry(e1, { op: 'put', type: 'file', rkey: '3l2kq7xxa2c2s', cid: cidOf(fileRecord) });
 const e3 = nextLogEntry(e2, { op: 'withdraw', type: 'file', rkey: '3l2kq7xxa2c2s' });
-const checkpoint = (seq: number, head: string, signer = { name: 'main', key: K.signing }, keylogSeq = 0) =>
-  signCheckpoint({ v: 0, account, seq, head, created: at(20 + seq), keylogSeq }, signer.name, signer.key.secretKey);
+const checkpoint = (seq: number, head: string, signer = K.signing, keylogSeq = 0) =>
+  signCheckpoint({ v: 0, account, seq, head, created: at(20 + seq) }, signer, keylogSeq);
 const cp2 = checkpoint(2, logEntryHash(e2));
 const cp3 = checkpoint(3, logEntryHash(e3));
 
@@ -165,11 +173,11 @@ const cp3 = checkpoint(3, logEntryHash(e3));
 const nonce = base64url.encode(sha256Bytes(utf8('meme-vectors/nonce')));
 const audience = 'https://app.example';
 const proofContext = { keylog: logs.base, audience, nonce, now: at(31) };
-const proof = (overrides: Record<string, unknown> = {}, signer = { name: 'main', key: K.signing }) =>
+const proof = (overrides: Record<string, unknown> = {}, signer = K.signing, keylogSeq = 0) =>
   signProof(
-    { v: 0, account, audience, nonce, issued: at(30), expires: at(35), keylogSeq: 0, ...overrides } as never,
-    signer.name,
-    signer.key.secretKey,
+    { v: 0, account, audience, nonce, issued: at(30), expires: at(35), ...overrides } as never,
+    signer,
+    keylogSeq,
   );
 
 // Files
@@ -287,6 +295,11 @@ export function buildVectors(): Record<string, Vector> {
       ],
       expect: invalid('bad_shape'),
     },
+    'keylog/invalid/duplicate-signing-key.json': {
+      description: 'A public key appears at most once among an entry’s signing keys.',
+      input: [genesis({ signingKeys: { main, again: main } })],
+      expect: invalid('bad_shape'),
+    },
     'keylog/invalid/plain-http-host.json': {
       description: 'Hosts use https, except localhost.',
       input: [genesis({ hosts: ['http://host.example'] })],
@@ -355,10 +368,7 @@ export function buildVectors(): Record<string, Vector> {
       expect: recordExpect(profile),
     },
     'record/valid/restricted-key-allowed-type.json': (() => {
-      const r = record(
-        { type: 'file', rkey: '3l2kq7xxa2c2s', body: { blob: photo, name: 'photo.jpg' }, keylogSeq: 1 },
-        { name: 'phone', key: K.phone },
-      );
+      const r = record({ type: 'file', rkey: '3l2kq7xxa2c2s', body: { blob: photo, name: 'photo.jpg' } }, K.phone, 1);
       return {
         description: 'A restricted key signing a type it is allowed.',
         context: { keylog: logs.withPhone },
@@ -366,10 +376,17 @@ export function buildVectors(): Record<string, Vector> {
         expect: recordExpect(r),
       };
     })(),
+    'record/valid/re-signed-after-revocation.json': {
+      description:
+        'After its signing key is revoked, the profile is re-signed by the replacement key. Its CID does not change.',
+      context: { keylog: logs.revoked },
+      input: resigned,
+      expect: valid({ cid: profileCid }),
+    },
     'record/valid/scape.json': (() => {
-      const r = record({ type: 'scape', rkey: 'links', body: manifest as never });
+      const r = record({ type: 'scape', rkey: SCAPE_RKEY, body: { ...manifest, slug: 'links' } as never });
       return {
-        description: 'A scape bundle manifest.',
+        description: 'A scape bundle manifest. Its slug lives in the body, so renaming it is a new revision.',
         context: { keylog: logs.base },
         input: r,
         expect: recordExpect(r),
@@ -411,16 +428,28 @@ export function buildVectors(): Record<string, Vector> {
       input: record({ body: { bio: 'x'.repeat(70_000) } }),
       expect: invalid('too_large'),
     },
-    'record/invalid/keylog-seq-beyond-head.json': {
-      description: 'keylogSeq must name an existing entry.',
+    'record/invalid/user-chosen-rkey.json': {
+      description: 'An rkey is self or a generated TID, never user-chosen text: the repository log keeps it forever.',
       context: { keylog: logs.base },
-      input: record({ keylogSeq: 5 }),
+      input: record({ type: 'scape', rkey: 'links', body: manifest as never }),
+      expect: invalid('bad_shape'),
+    },
+    'record/invalid/sig-without-keylog-seq.json': {
+      description: 'sig is { key, keylogSeq, value }.',
+      context: { keylog: logs.base },
+      input: tamper(profile, { sig: { key: profile.sig.key, value: profile.sig.value } }),
+      expect: invalid('bad_shape'),
+    },
+    'record/invalid/keylog-seq-beyond-head.json': {
+      description: 'sig.keylogSeq must name an existing entry.',
+      context: { keylog: logs.base },
+      input: record({}, K.signing, 5),
       expect: invalid('unknown_key'),
     },
-    'record/invalid/unknown-key-name.json': {
-      description: 'sig.key must name a signing key in the entry at keylogSeq.',
+    'record/invalid/unlisted-key.json': {
+      description: 'sig.key must be a signing key listed in the entry at sig.keylogSeq.',
       context: { keylog: logs.base },
-      input: record({}, { name: 'other', key: K.signing }),
+      input: record({}, K.stranger),
       expect: invalid('unknown_key'),
     },
     'record/invalid/revoked-key.json': {
@@ -432,16 +461,20 @@ export function buildVectors(): Record<string, Vector> {
     'record/invalid/restricted-key-other-type.json': {
       description: 'A restricted key may sign only its listed types.',
       context: { keylog: logs.withPhone },
-      input: record({ keylogSeq: 1 }, { name: 'phone', key: K.phone }),
+      input: record({}, K.phone, 1),
+      expect: invalid('key_restricted'),
+    },
+    'record/invalid/restriction-tightened-later.json': {
+      description:
+        'A key’s restrictions are those of the latest entry that lists it, so tightening them applies to past signatures.',
+      context: { keylog: logs.tightened },
+      input: profile,
       expect: invalid('key_restricted'),
     },
     'record/invalid/unknown-restriction.json': {
       description: 'Restrictions fail closed: a key with an unknown restriction is unusable.',
       context: { keylog: logs.unknownRestriction },
-      input: record(
-        { type: 'post', rkey: '3l2kq7xxa2c2u', body: { text: 'hi' }, keylogSeq: 1 },
-        { name: 'phone', key: K.phone },
-      ),
+      input: record({ type: 'post', rkey: '3l2kq7xxa2c2u', body: { text: 'hi' } }, K.phone, 1),
       expect: invalid('unknown_restriction'),
     },
     'record/invalid/tampered.json': {
@@ -451,9 +484,12 @@ export function buildVectors(): Record<string, Vector> {
       expect: invalid('bad_signature'),
     },
     'record/invalid/wrong-signer.json': {
-      description: 'Signed by a key that is not the named signing key.',
+      description: 'Names the listed signing key, but was signed by another.',
       context: { keylog: logs.base },
-      input: record({}, { name: 'main', key: K.stranger }),
+      input: (() => {
+        const r = record({}, K.stranger);
+        return { ...r, sig: { ...r.sig, key: K.signing.multikey } };
+      })(),
       expect: invalid('bad_signature'),
     },
     'record/invalid/schema.json': {
@@ -465,7 +501,11 @@ export function buildVectors(): Record<string, Vector> {
     'record/invalid/scape-bad-path.json': {
       description: 'Bundle paths never contain "..".',
       context: { keylog: logs.base },
-      input: record({ type: 'scape', rkey: 'links', body: withFiles({ ...site, '../secret.txt': blobRef }) as never }),
+      input: record({
+        type: 'scape',
+        rkey: SCAPE_RKEY,
+        body: withFiles({ ...site, '../secret.txt': blobRef }) as never,
+      }),
       expect: invalid('bad_path'),
     },
 
@@ -529,7 +569,7 @@ export function buildVectors(): Record<string, Vector> {
     'checkpoint/invalid/restricted-signer.json': {
       description: 'Restricted keys cannot sign checkpoints.',
       context: { keylog: logs.withPhone },
-      input: checkpoint(3, logEntryHash(e3), { name: 'phone', key: K.phone }, 1),
+      input: checkpoint(3, logEntryHash(e3), K.phone, 1),
       expect: invalid('key_restricted'),
     },
     'checkpoint/invalid/wrong-account.json': {
@@ -591,7 +631,7 @@ export function buildVectors(): Record<string, Vector> {
     'proof/invalid/restricted-key.json': {
       description: 'Restricted keys cannot sign proofs.',
       context: { ...proofContext, keylog: logs.withPhone },
-      input: proof({ keylogSeq: 1 }, { name: 'phone', key: K.phone }),
+      input: proof({}, K.phone, 1),
       expect: invalid('key_restricted'),
     },
     'proof/invalid/tampered.json': {

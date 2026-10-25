@@ -45,14 +45,14 @@
         "bake"
       ]
     },
-    "keylogSeq": 0,
     "sig": {
-      "key": "main",
-      "value": "HIdNt8GOzz2Rbmc8IMwSMlDyo2Fru9L6sAZbDcTZz_g_FTYdZldKqNarmH9msjDizeBceh9IrNBqfLLjKZdWAQ"
+      "key": "z6MkgKMZqZSFogrfCmJPFhQbWB3MFyoyEmxXoYQDzi2aboky",
+      "keylogSeq": 0,
+      "value": "xM-Hc0KcNOGKx3CSn3x_xZvLpfraPewWdWE_eIKNPYevOlMbhbjVp8HTHnkQ7VGpTtC7LPsKIhIluDSl37u-DQ"
     }
   },
   "expect": {
     "valid": true,
-    "cid": "sha256:90893349becb76c5255349fa46364ac64c52130c0fe7f23389f6d864b632664d"
+    "cid": "sha256:03d99e25ed79b1fd430fb307ab3aaca6f50165670765214707c21ba860f936ac"
   }
 }

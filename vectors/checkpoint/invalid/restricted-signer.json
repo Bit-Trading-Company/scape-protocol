@@ -69,12 +69,12 @@
     "v": 0,
     "account": "yhndxggbfkwpaq2l3b3i46mf",
     "seq": 3,
-    "head": "sha256:694b91ed9592b1e4ddbd478773888162fe9db91a3d3b5ff0f801e9158468ee00",
+    "head": "sha256:eda08ce09dd1f16a4325869dd7cfa0eb9565a5ae40cc0d22f5525321f8edec75",
     "created": "2026-10-17T09:23:00.000Z",
-    "keylogSeq": 1,
     "sig": {
-      "key": "phone",
-      "value": "6RAWUYnPjci41Y0cawuf22Ahk80wQjdusztt2dLC7iv5AfrzpZXhIk0mfopGGSiiHzjD7WMlh76Zu0Lg7WDRAA"
+      "key": "z6MknmhvSosweyXmhaPXe94MKef77MH3nniBNkSg4nkcs9CP",
+      "keylogSeq": 1,
+      "value": "BD0d0b05TPnegPTcKcTRx37NEDYYSHhQhLQqZmJfWS2etzgNn3N7vemF-M6DGpR7I83x234EaIs6D0iNyQ3SDQ"
     }
   },
   "expect": {
